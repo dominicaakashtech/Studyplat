@@ -1,0 +1,55 @@
+class bank:
+    def _init_(self,accno,name,age,phoneno,address):
+        self.accno=accno
+        self.name=name
+        self.age=age
+        self.num=phoneno
+        self.address=address
+        self.balance=0
+        self.depositeamount=[]
+        self.witdrawamont=[]
+    def showaccount(self):
+        print("Accountnum",self.accno)
+        print("name:",self.name)
+        print("Age:",self.age)
+        print("Address:",self.address)
+    def deposite(self):
+        self.amount=int(input("enter your deposite amount:"))
+        self.depositeamount.append(self.amount)
+        self.balance=self.balance+self.amount
+        print(f"{self.amount} deposite successfully")
+    def withdraw(self):
+        self.amount=int(input("enter your withdraw amount:"))
+        self.witdrawamont.append(self.amount)
+        self.balance=self.balance-self.amount
+        print(f"{self.amount} withdraw successfully")
+    def tran_history(self):
+        print("Deposite_history:",self.depositeamount)
+        print("withdraw history:",self.witdrawamont)
+
+    def currentbalace(self):
+        print(f"your current balance is :{self.balance}")
+
+accno=int(input("enter your accno"))
+name=(input("enter your name"))
+age=int(input("enter your age"))
+phoneno=int(input("enter your phonenum"))
+address=(input("enter your address"))
+obj=bank(accno,name,age,phoneno,address)
+while True:
+    print("Please select any option:")
+    print("1.Show_Account\n2.deposite\n3.withdraw\n4.currentbalance\n5.history\n6.Stop")
+    option = int(input("Enter your option:"))
+    if option==1:
+        obj.showaccount()
+    if option==2:
+        obj.deposite()
+    if option==3:
+        obj.withdraw()
+    if option==4:
+        obj.currentbalace()
+    if option==5:
+        obj.tran_history()
+    if option==6:
+        print("Thank you !")
+        break

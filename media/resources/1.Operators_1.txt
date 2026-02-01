@@ -1,0 +1,273 @@
+Python Introduction:
+
+1]Python is the popular programming language.
+2]It was created by Guido van Rossum.
+3]Its released in 1991.
+4]Python has a simple syntax similar to the English language.
+5]Python is a powerful high-level,object oriented programming language.
+6]Python is a interpreted language.
+7]Rossum was fan of a comedy series from late seventies.the name "Python" was
+ adopted from the same series "Monty Pythons Flying Circus".
+8]Free and open source.
+9]It is used for:
+	web development.
+	software development.
+	mathematics.
+	system scripting.
+10]Operating system:
+	Windows 
+	Mac os 
+	Linux 
+	Raspberry Pi
+11]Python in Web Applications:
+	Django
+	Flask
+	Pyramid
+
+ ------------------Operators Types:-------------------
+Opeartors are used to perform operations on values and variables.
+
+1]Arithmetic Operators
+2]Assignment Operators
+3]Logical Operators
+4]Relational or Comparison Operators
+5]Membership & Identity Operators
+6]Bitwise Operators
+----------------Arithmetic Operators:---------------
+1]Addition        - [+]  1+102
+2]Subtraction     - [-]  1-1=0
+3]Multiplication  - [*]  2*2=4
+4]Division        - [/]  10/5=2.0
+5]Modulo Division - [%]  10%5=0
+6]Exponentiation  - [**] 5**2=25   -----5*5=25
+7]floor division- [//] 10//5=2   
+-----------------------------------------------------
+a=8
+b=10
+c=a+b
+print("Addition:",c)
+
+print("\n")
+
+c=a-b
+print("Subtraction:",c)
+
+print("\n")
+
+c=a*b
+print("Multiplication:",c)
+
+print("\n")
+
+c=a/b
+print("Division:",c)
+
+print("\n")
+
+	c=a%b
+print("Modulo Division:",c)
+
+print("\n")
+
+c=a**b
+print("Exponentiation:",c)
+
+print("\n")
+
+c=a//b
+print("Floor Division:",c)
+
+
+-------------------Assignment Operators---------------------
+
+1]Addition        - [+=]  1+1=2                   a
+2]Subtraction     - [-=]  1-1=0                   a
+3]Multiplication  - [*=]  2*2=4                   a
+4]Division        - [/=]  10/5=2.0                a
+5]Modulo Division - [%=]  10/5=.0                 a
+6]Exponentiation  - [**=] 5**2=25   -----5*5=25   a
+7]Floor Division  - [//=] 10//5=2--O            a 1.5 print 1 ans
+
+a+=b
+a=a+b
+
+
+-----------------------------------------------------------------
+
+a=10
+
+b=5
+a+=b
+print("Addition",a)
+
+a=a-b
+print("Subtraction", a)
+
+a*=b
+print("Multiplication",a)
+
+a/=b
+print("Division",a)
+
+a%=b
+print("Modulo Division",a)
+a=10
+a**=b
+print("Exponentiation",a)
+a=10
+a//=b
+print("Floor Division",a)
+
+------------------
+
+comparision Operators:------------------
+Lessthan               - (<)
+Lessthan or Equal      - (<=)
+Greaterthan            - (>)
+Greaterthan or Equal   - (>=)
+Equal to               - (= =)
+Not Equal              - (!=)
+---------------------------------------------------------
+
+a=30
+b=31
+ans=a<b
+print("Lessthan",a,"<",b,":",ans)
+
+ans=a<=b
+print("Lessthan or Equal",a,"<=",b,":",ans)
+
+ans=a>b
+print("Greaterthan",a,">",b,":",ans)
+
+ans=a>=b
+print("Greaterthan or Equal",a,">=",b,":",ans)
+
+ans=a==b
+print("Equal to",a,"==",b,":",ans)
+
+ans=a!=b
+print("Not Equal",a,"!=",b,":",ans) 
+
+------------------Logical Operators-----------------------
+
+AND gate:
+1  1 = 1
+1  0 = 0
+0  1 = 0
+0  0 = 0
+
+OR gate:
+1  1 = 1
+1  0 = 1
+0  1 = 1
+0  0 = 0
+
+NOT gate:
+0 = 1
+1 = 0
+
+----------------------------------------------------------
+
+a=10
+b=20
+c=50
+d=40
+e=a<b and c<d
+print("AND:",e)
+
+e=a>b or c<d
+print("OR:",e)
+
+e=not(a<b)
+print("NOT:",e)
+
+-------------------------Bitwise Operators----------------------
+
+XOR gate:
+0  0 = 0
+0  1 = 1
+1  0 = 1
+1  1 = 0
+
+   a b c d
+0] 0 0 0 0
+1] 0 0 0 1
+2] 0 0 1 0
+3] 0 0 1 1
+4] 0 1 0 0
+5] 0 1 0 1
+6] 0 1 1 0
+7] 0 1 1 1
+8] 1 0 0 0
+9] 1 0 0 1
+10]1 0 1 0
+11]1 0 1 1
+12]1 1 0 0
+13]1 1 0 1
+14]1 1 1 0
+15]1 1 1 1
+  
+
+AND Operators                [&]    
+OR Operators                 [|]    
+XOR Operators                [^]    
+
+
+AND Operators:
+c=2&3
+print("& Symbol Ans:",c)
+
+2-0010 
+3-0011=AND
+0010
+
+OR Operators:
+c=2|3
+print("| Symbol Ans:",c)
+
+2-0010 
+3-0011=OR
+
+XOR Operators:
+c=2^3
+print("^ Symbol Ans:",c)
+
+2-0010 
+3-0011=XOR
+
+----------------Membership & Identity Operators--------------------
+
+
+1]Membership Operators: 
+
+   1) in     
+   2) not in 
+
+2]Identity Operators:
+   1) is      
+   2) is not
+
+---------------------Membership------------------------
+E.g
+
+a="t"
+b="sakthi"
+print("In :",a in b)
+
+a="s"
+b="sakthi"
+print("Not In :",a not in b)
+
+---------------------Identity--------------------------
+E.g
+
+a="10"
+b="10"
+print("Is :",a is b)
+
+a="10"
+b="10"
+print("Is Not :",a is not b)
+
+----------------------------------------------------

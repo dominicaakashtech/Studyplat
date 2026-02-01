@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}My Dashboard - LEARN HUB{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2><i class="bi bi-speedometer2"></i> My Dashboard</h2>
+            <p class="text-muted">Welcome back, {{ user.username }}!</p>
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-primary">{{ my_groups.count }}</h3>
+                    <p class="mb-0"><i class="bi bi-people"></i> Groups Joined</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-success">{{ created_groups.count }}</h3>
+                    <p class="mb-0"><i class="bi bi-star"></i> Groups Created</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <a href="{% url 'create_group' %}" class="btn btn-primary btn-lg">
+                        <i class="bi bi-plus-circle"></i> Create New Group
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Groups -->
+    <div class="row">
+        <div class="col-12 mb-4">
+            <h4><i class="bi bi-bookmark-star"></i> My Study Groups</h4>
+        </div>
+        
+        {% for group in my_groups %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ group.name }}</h5>
+                    <p class="text-muted mb-2">
+                        <i class="bi bi-tag-fill"></i> {{ group.subject }}
+                    </p>
+                    <p class="card-text">{{ group.description|truncatewords:20 }}</p>
+                    <div class="mb-2">
+                        <span class="badge bg-info">
+                            <i class="bi bi-people-fill"></i> {{ group.members.count }} members
+                        </span>
+                        {% if group.created_by == user %}
+                        <span class="badge bg-warning text-dark">
+                            <i class="bi bi-star-fill"></i> Admin
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{% url 'group_detail' group.pk %}" class="btn btn-primary w-100">
+                        <i class="bi bi-box-arrow-in-right"></i> Enter Group
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle"></i> You haven't joined any groups yet.
+                <a href="{% url 'browse_groups' %}" class="alert-link">Browse available groups</a>
+                or <a href="{% url 'create_group' %}" class="alert-link">create your own</a>!
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Created Groups -->
+    {% if created_groups %}
+    <div class="row mt-5">
+        <div class="col-12 mb-4">
+            <h4><i class="bi bi-gear-fill"></i> Groups I Manage</h4>
+        </div>
+        
+        {% for group in created_groups %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 border-warning">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ group.name }}
+                        <span class="badge bg-warning text-dark float-end">Admin</span>
+                    </h5>
+                    <p class="text-muted mb-2">
+                        <i class="bi bi-tag-fill"></i> {{ group.subject }}
+                    </p>
+                    <p class="card-text">{{ group.description|truncatewords:20 }}</p>
+                    <div class="mb-2">
+                        <span class="badge bg-info">
+                            <i class="bi bi-people-fill"></i> {{ group.members.count }}/{{ group.max_members }}
+                        </span>
+                        {% if group.is_private %}
+                        <span class="badge bg-secondary">
+                            <i class="bi bi-lock-fill"></i> Private
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{% url 'group_detail' group.pk %}" class="btn btn-warning w-100">
+                        <i class="bi bi-gear"></i> Manage Group
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

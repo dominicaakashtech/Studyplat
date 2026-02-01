@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Study Group - LEARN HUB{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0"><i class="bi bi-plus-circle"></i> Create New Study Group</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.name.id_for_label }}" class="form-label">
+                                <i class="bi bi-card-heading"></i> Group Name *
+                            </label>
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                            <div class="text-danger">{{ form.name.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.subject.id_for_label }}" class="form-label">
+                                <i class="bi bi-tag"></i> Subject *
+                            </label>
+                            {{ form.subject }}
+                            <small class="form-text text-muted">e.g., Mathematics, Physics, Computer Science</small>
+                            {% if form.subject.errors %}
+                            <div class="text-danger">{{ form.subject.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.description.id_for_label }}" class="form-label">
+                                <i class="bi bi-text-paragraph"></i> Description *
+                            </label>
+                            {{ form.description }}
+                            <small class="form-text text-muted">Describe what your group is about and what topics you'll cover</small>
+                            {% if form.description.errors %}
+                            <div class="text-danger">{{ form.description.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.max_members.id_for_label }}" class="form-label">
+                                <i class="bi bi-people"></i> Maximum Members *
+                            </label>
+                            {{ form.max_members }}
+                            <small class="form-text text-muted">Set a limit for group size (2-100)</small>
+                            {% if form.max_members.errors %}
+                            <div class="text-danger">{{ form.max_members.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="form-check">
+                                {{ form.is_private }}
+                                <label class="form-check-label" for="{{ form.is_private.id_for_label }}">
+                                    <i class="bi bi-lock"></i> Make this group private
+                                </label>
+                                <small class="form-text text-muted d-block">Private groups won't appear in public listings</small>
+                            </div>
+                            {% if form.is_private.errors %}
+                            <div class="text-danger">{{ form.is_private.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-check-circle"></i> Create Study Group
+                            </button>
+                            <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">
+                                <i class="bi bi-x-circle"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

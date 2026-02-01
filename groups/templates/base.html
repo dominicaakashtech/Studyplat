@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} LEARN HUB{% endblock %}</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">   
+    <style>
+        :root {
+            --primary-color: #4a5fc1;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --info-color: #17a2b8;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #010101 0%, #3b145b 100%);
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #121212 0%, #370d61 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,.15);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #020f47 0%, #1e0239 100%);
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #e10707 0%, #c17e7e 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 10px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(43, 55, 109, 0.4);
+        }
+
+        .badge {
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-weight: 500;
+        }
+
+        .chat-container {
+            height: 400px;
+            overflow-y: auto;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .message-bubble {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+            border-radius: 15px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            margin-left: auto;
+            margin-right: 0;
+            max-width: 70%;
+            box-shadow: 0 2px 5px rgba(0,0,0,.05);
+        }
+
+        .message-bubble.own-message {
+            background: linear-gradient(135deg, #ffffff 0%, #0bb0ed 100%);
+            color: rgb(0, 0, 0);
+            margin-left: auto;
+            margin-right: 0;
+            max-width: 70%;
+        }
+
+        .resource-item {
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+            margin-bottom: 15px;
+        }
+
+        .calendar-event {
+            background-color: #e7f3ff;
+            border-left: 4px solid #0066cc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .search-box {
+            border-radius: 25px;
+            padding: 10px 20px;
+        }
+
+        .member-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #19191a 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .stats-box {
+            background: linear-gradient(135deg, #161926 0%, #30035e 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stats-box h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <i class="bi bi-book"></i> LEARN HUB
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+<div class="collapse navbar-collapse" id="navbarNav">
+    <!-- LEFT aligned links -->
+    <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'browse_groups' %}">Browse Groups</a>
+        </li>
+
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'create_group' %}">Create Group</a>
+        </li>
+        {% endif %}
+    </ul>
+
+    <!-- RIGHT aligned user menu or login -->
+    <ul class="navbar-nav ms-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                <i class="bi bi-person-circle"></i> {{ user.username }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+
+        </div>
+    </nav>
+
+    <!-- Messages -->
+    {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+<footer class="footer mt-5 text-light">
+    <div class="footer-top py-5" style="
+        background: linear-gradient(135deg, #010101 0%, #3b145b 100%);
+    ">
+        <div class="container">
+            <div class="row gy-4">
+
+                <!-- Branding -->
+                <div class="col-md-4">
+                    <h4 class="fw-bold"><i class="bi bi-book"></i> LEARN HUB</h4>
+                    <p class="small mt-3">
+                        A collaborative platform where students connect, share knowledge, 
+                        and grow through learning communities.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-4">
+                    <h5 class="fw-semibold mb-3">Quick Links</h5>
+                    <ul class="list-unstyled small">
+                        <li><a href="{% url 'home' %}" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="{% url 'browse_groups' %}" class="text-light text-decoration-none">Browse Groups</a></li>
+                        <li><a href="{% url 'create_group' %}" class="text-light text-decoration-none">Create Group</a></li>
+
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'dashboard' %}" class="text-light text-decoration-none">Dashboard</a></li>
+                        <li><a href="{% url 'logout' %}" class="text-light text-decoration-none">Logout</a></li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}" class="text-light text-decoration-none">Login</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <!-- Contact & Social -->
+                <div class="col-md-4">
+                    <h5 class="fw-semibold mb-3">Connect With Us</h5>
+                    <p class="small mb-1"><i class="bi bi-envelope"></i> support@learnhub.com</p>
+                    <p class="small mb-3"><i class="bi bi-telephone"></i> +91 6384725014</p>
+
+                    <div class="d-flex gap-3 fs-4">
+                        <a href="#" class="text-light"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom py-3" style="background-color: #111;">
+        <div class="container text-center small">
+            &copy; 2025 LEARN HUB. All rights reserved.
+        </div>
+    </div>
+</footer>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

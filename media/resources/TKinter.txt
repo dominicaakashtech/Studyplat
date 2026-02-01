@@ -1,0 +1,533 @@
+---------------------TKinter-------------------------------
+
+Python provides several different options for writing GUI based programs.
+1]Tkinter is Python's standard GUI (graphical user interface) package.
+2]It is the most commonly used toolkit for GUI programming in Python.
+3]It is the desktop application.
+
+Desktop Application Type:
+   1 Tkinter
+   2 Kivy
+   3 PyQT
+   4 WxPython
+   5 PyGUI
+
+Widgets:
+1]Label
+2]Entry
+3]Button
+4]Check Button
+5]Radio Button
+6]Combo Box
+7]Message Box
+8]Spin Box
+9]Menu
+10]Toplevel
+11]Notebook
+
+----------------------------------Method----------------------------------
+
+1]pack()  method:It organizes the widgets in blocks before placing in the parent widget.
+2]grid()  method:It organizes the widgets in grid (table-like structure) before placing in the parent widget.
+3]place() method:It organizes the widgets by placing them on specific positions directed by the programmer.
+
+---------------------------------------------------------------------
+
+activebackground: To set the background color when button is under the cursor.
+activeforeground: To set the foreground color when button is under the cursor.
+bg:               To set the normal background color.
+command:          To call a function.
+font:             To set the font on the button label.
+width:            To set the width of the button.
+height:           To set the height of the button.
+highlightcolor:   To set the color shown in the focus highlight.
+
+---------------------------------------------------------------------
+import tkinter
+window=tkinter.Tk()
+window.mainloop()
+
+-----------------------------------------------------------
+import tkinter
+window=tkinter.Tk()
+window.geometry("1000x700")
+window.title("sakthi")
+window.config(bg="#2c3e80")
+window.mainloop()
+
+------------------creat label-----------------------------
+
+from tkinter import *
+from tkinter.font import Font
+
+tk=Tk()
+tk.geometry("1000x700")
+tk.title("sakthi")
+tk.resizable(height="false",width="false")
+
+myfont=Font(family="times",size=20,weight="bold")
+
+
+lab=Label(tk,text="welcome to tkinter",font=myfont,bg="#0a3d62",fg="white",padx=80,pady=20,relief="raised")
+#flat, groove, raised, ridge, solid, or sunken
+lab.pack()
+
+lab=Label(tk,text="welcome to tkinter",font=myfont,bg="#0a3d62",fg="white",padx=80,pady=20)
+lab.pack()
+
+lab=Label(tk,text="welcome to tkinter",font=myfont,bg="#0a3d62",fg="white",padx=150,pady=20,relief="raised")
+lab.pack()
+
+lab=Label(tk,text="welcome to tkinter",font=myfont,bg="#0a3d62",fg="white",padx=50,pady=150,relief="raised")
+lab.pack()
+
+lab=Label(tk,text="welcome to tkinter",font=("times",20,"bold"),bg="#0a3d62",fg="white",padx=50,pady=150,relief="raised")
+lab.pack()
+
+tk.mainloop()
+
+---------------------creat button----------------------------
+
+from tkinter import *
+from tkinter import messagebox
+
+def submit():
+    print("submit button clicked")
+    btnsub=Label(tk,text="submit button clicked",fg="green",font=("times",20,"bold"))
+    btnsub.pack()
+    messagebox.showinfo("Message","submit button clicked")
+
+
+def clear():
+    print("clear button clicked")
+    btnclr = Label(tk,text = "clear button clicked", fg = "red", font=("times",20,"bold"))
+    btnclr.pack()
+    messagebox.showinfo("Message", "clear button clicked")
+
+tk=Tk()
+tk.geometry("1000x700")
+tk.title("sakthi")
+
+sub=Button(tk,text="submit",bg="green",fg="white",padx=10,pady=10,width=10,font=("times",20,"bold"),activebackground="#009432",
+           activeforeground="yellow",command=submit)
+sub.pack()#side="left",bottom,right,top/expand="true"/fill="x"BOTH
+
+sub=Button(tk,text="update",bg="red",fg="white",padx=10,pady=10,width=10,font=("times",20,"bold"),activebackground="#ff3838",
+           activeforeground="yellow",command=clear)
+sub.pack()#side="left",bottom,right,top/expand="true"/fill="x",BOTH
+
+tk.mainloop()
+
+----------------------------------create entry widget-----------------------------------------
+from tkinter import *
+from tkinter import messagebox
+
+tk=Tk()
+tk.geometry("500x500")
+tk.title("sakthi")
+
+def getdata():
+    data=txtN.get()
+    lab=Label(tk,text=data,font=("times",20),fg="green")
+    lab.pack()
+    messagebox.showinfo("messagebox",data)
+
+def clear():
+    txtN.delete(0,END)#0,2,3,4
+
+txtN=Entry(tk,width=30,font=("times",20),bg="#e74c3c",fg="white")
+txtN.pack()
+
+"""txt=Entry(tk,width=30,font=("times",20),bg="#e74c3c",fg="white",selectbackground="black",selectforeground="yellow",show="*")
+txt.pack() """                                                    # textbackground colore  ,  textcolore
+
+btn=Button(tk,text="submin",font=("times",15),width=10,padx=30,pady=10,bg="green",fg="white",command=getdata)
+btn.pack()
+
+btnclr=Button(tk,text="clear",font=("times",15),width=10,padx=30,pady=10,bg="red",fg="white",command=clear)
+btnclr.pack()
+
+tk.mainloop()
+
+------------------------Checkbutton-------------------------------
+from tkinter import *
+from tkinter import messagebox
+tk=Tk()
+tk.geometry("500x600")
+tk.title("sakthi")
+
+def submint():
+    if(c1.get()==1):
+        Val=chk1.cget("text")
+        #Val=c1.get()
+        messagebox.showinfo("C1 Message",Val)
+    if (c2.get() == 1):
+        Val=chk2.cget("text")
+        #Val = c2.get()
+        messagebox.showinfo("C2 Message",Val)
+    if (c3.get() == 1):
+        Val=chk3.cget("text")
+        #Val = c3.get()
+        messagebox.showinfo("C3 Message",Val)
+
+def clear():
+    chk1.deselect()
+    chk2.deselect()
+    chk3.deselect()
+    messagebox.showinfo("Message","Check Button Clear")
+
+c1=IntVar()
+c2=IntVar()
+c3=IntVar()
+
+lab=Label(tk,text="Check Button",font=("times",20,"bold"),fg="white",bg='#2c3e50')
+lab.pack(fill=X,pady=0,padx=0)
+
+chk1=Checkbutton(tk,text="python",variable=c1,onvalue=1,offvalue=0)
+chk1.pack(pady=10,padx=20)
+chk2=Checkbutton(tk,text="Java",variable=c2,onvalue=1,offvalue=0)
+chk2.pack(pady=10,padx=20)
+chk3=Checkbutton(tk,text=".Net",variable=c3,onvalue=1,offvalue=0)
+chk3.pack(pady=10,padx=20)
+
+btn1=Button(tk,text="Submint",command=submint,font=("times",15,"bold"),width=10,padx=10,pady=10,bg="green",fg="white")
+btn1.pack()
+btn2=Button(tk,text="Clear",command=clear,font=("times",15,"bold"),width=10,padx=10,pady=10,bg="green",fg="white")
+btn2.pack()
+
+tk.mainloop()
+----------------------------------------------Radiobutton---------------------------------------------------------
+
+from tkinter import *
+from tkinter import messagebox
+
+tk=Tk()
+tk.geometry("500x600")
+tk.title("Radio Button")
+
+def myfunction():
+    if gender.get()==1:
+        #data=gender.get()
+        data=btnmale.cget("text")
+        messagebox.showinfo("message",data)
+    elif gender.get()==2:
+        #data = gender.get()
+        data =btnfemale.cget("text")
+        messagebox.showinfo("message",data)
+"""def clear():
+   	gender.set(None)
+"""
+
+lab=Label(tk,text="Radio Button",font=("times",20,"bold"),fg="white",bg='#2c3e50')
+lab.pack(fill=X,pady=0,padx=0)
+
+"""gender1=IntVar()
+gender2=IntVar()
+
+btnmale1=Radiobutton(tk,text="Male",variable=gender1,font=("times",20,"bold"),state="disabled")
+btnmale.pack()
+
+btnfemale=Radiobutton(tk,text="Female",variable=gender2,font=("times",20,"bold"))
+btnmale.pack()"""
+
+gender=IntVar()
+
+btnmale=Radiobutton(tk,text="Male",variable=gender,value=1,font=("times",20,"bold"))
+btnmale.pack()
+
+btnfemale=Radiobutton(tk,text="Female",variable=gender,value=2,font=("times",20,"bold"))
+btnfemale.pack()
+
+btn=Button(tk,text="Button",font=("times",15,"bold"),width=10,padx=30,pady=10,bg="red",fg="white",command=myfunction)
+btn.pack(pady=100)
+
+tk.mainloop()
+
+------------------------------------------------Combo Box----------------------------------------------
+
+from tkinter import *
+from tkinter import ttk
+from tkinter import messagebox
+
+tk=Tk()
+tk.geometry("500x600")
+tk.title("Combo Box")
+
+def comboclick(event):
+    data=cb.get()
+    messagebox.showinfo("message",data)
+
+"""def deselect_combobox():
+    cb.set("")"""
+
+lab=Label(tk,text="Combo Box",font=("times",20,"bold"),fg="white",bg='#2c3e50',pady=10,padx=30)
+lab.pack(fill=X)
+
+cb=ttk.Combobox(tk,width=30,state="readonly")
+cb['values']=("C","C++","Python","Java")
+cb.bind("<<ComboboxSelected>>",comboclick)
+cb.current(0)
+cb.pack(pady=30)
+
+"""deselect_button = Button(tk, text="Deselect", command=deselect_combobox)
+deselect_button.pack()"""
+
+tk.mainloop()
+
+-------------------------------Spinbox-------------------------------
+
+from tkinter import *
+from tkinter import messagebox
+
+tk=Tk()
+tk.geometry("500x500")
+tk.config(bg="#2c3e80")
+tk.title("sakthi")
+def spinbox():
+    data=my.get()
+    messagebox.showinfo("hii",data)
+    lab.config(text=data)
+
+my=Spinbox(tk,from_=0,to=10,width=20,font=("times",15,"bold"))
+my.place(x=135,y=120)
+
+lab=Label(tk,text="",font=("times",20,"bold"),fg="green")
+lab.place(x=235,y=300)
+
+lab1=Label(tk,text="Spinbox",font=("times",20,"bold"),fg="black",bg='#2c3e80')
+lab1.place(x=200,y=40)
+
+bt=Button(tk,text="Enter",font=("times",15,"bold"),width=10,padx=30,pady=10,bg="green",fg="white",command=spinbox)
+bt.place(x=150,y=200)
+
+tk.mainloop()
+
+----------------------------------------Menu---and---Toplevel-----------------------------------
+
+from tkinter import *
+tk=Tk()
+tk.geometry("500x500")
+tk.config(bg="#2c3e80")
+tk.title("Menu")
+
+def New():
+    new=Toplevel(tk)
+    new.geometry("200x200")
+    new.config(bg="#2c3e80")
+    new.title("New")
+    labnew=Label(new,text="New",font=("times",15,"bold"),fg="white",bg="green",width=10,padx=30,pady=10)
+    labnew.pack(fill=X)
+    btnnew=Button(new,text="Exit",font=("times",15,"bold"),width=10,padx=0,pady=0,bg="red",fg="white",command=new.destroy)
+    btnnew.pack(padx=10,pady=10)
+
+labnew=Label(tk,text="MENU",font=("times",15,"bold"),fg="white",bg="green",width=10,padx=30,pady=10)
+labnew.pack(fill=X)
+
+menubar=Menu(tk)
+filemenu=Menu(menubar,tearoff=0)
+filemenu.add_command(label="New",command=New)
+filemenu.add_command(label="Open")
+filemenu.add_separator()
+filemenu.add_command(label="Close",command=tk.quit)
+menubar.add_cascade(label="File",menu=filemenu)
+
+
+filemenu1=Menu(menubar,tearoff=0)
+filemenu1.add_command(label="Save")
+filemenu1.add_command(label="Save As")
+filemenu1.add_separator()
+filemenu1.add_command(label="Copy")
+filemenu1.add_command(label="Cut")
+filemenu1.add_command(label="Paste")
+menubar.add_cascade(label="Edit",menu=filemenu1)
+tk.config(menu=menubar)
+
+tk.mainloop()
+
+-----------------------Place Method-----------------------------
+
+from tkinter import *
+
+tk=Tk()
+tk.geometry("500x500")
+tk.title("PLACE  Method")
+
+lab=Label(tk,text="PLACE  Method",font=("times",20,"bold"),fg="black")
+lab.place(x=105,y=10)
+
+labname=Label(tk,text="Email",font=("time",15,"bold"))
+labname.place(x=20,y=50)
+
+txtname=Entry(tk,font=("time",15,"bold"))
+txtname.place(x=150,y=50)
+
+labnage=Label(tk,text="Password",font=("time",15,"bold"))
+labnage.place(x=20,y=100)
+
+txtage=Entry(tk,font=("time",15,"bold"))
+txtage.place(x=150,y=100)
+
+btncls=Button(tk,text="LOGIN",font=("times",15,"bold"),bg="#CAD3C8",fg="black")
+btncls.place(x=200,y=140)
+
+tk.mainloop()
+
+-----------------------Grid Method----------------------
+
+from tkinter import *
+
+tk=Tk()
+tk.geometry("500x500")
+tk.title("Grid system")
+
+lab=Label(tk,text="Grid system",font=("times",20,"bold"),fg="black",pady=0,padx=0)
+lab.grid(row=0,column=1)
+
+labname=Label(tk,text="Name",font=("time",15,"bold"),pady=10)
+labname.grid(row=1,column=0)
+
+txtname=Entry(tk,font=("time",15,"bold"))
+txtname.grid(row=1,column=1)
+
+labnage=Label(tk,text="Age",font=("time",15,"bold"),pady=10)
+labnage.grid(row=2,column=0)
+
+txtage=Entry(tk,font=("time",15,"bold"))
+txtage.grid(row=2,column=1)
+
+labadd=Label(tk,text="Address",font=("time",15,"bold"),pady=10)
+labadd.grid(row=3,column=0)
+
+txtadd=Entry(tk,font=("time",15,"bold"))
+txtadd.grid(row=3,column=1)
+
+labmail=Label(tk,text="Mail",font=("time",15,"bold"),pady=10)
+labmail.grid(row=4,column=0)
+
+txtmail=Entry(tk,font=("time",15,"bold"))
+txtmail.grid(row=4,column=1)
+
+btnsub=Button(tk,text="Submit",font=("times",15,"bold"),padx=20,pady=5,bg="green",fg="white")
+btnsub.grid(row=5,column=1,sticky=E)
+
+btncls=Button(tk,text="Clear ",font=("times",15,"bold"),padx=20,pady=5,bg="red",fg="white")
+btncls.grid(row=5,column=1,sticky=W)
+
+tk.mainloop()
+
+----------------------------Frame Createing-------------------------
+
+from tkinter import *
+
+tk=Tk()
+tk.geometry("850x500")
+tk.title("Frame Createing")
+
+frame=Frame(tk,highlightbackground="black",highlightthickness=2,padx=20,pady=20)
+frame.grid(row=0,column=0,padx=50,pady=50)
+
+lab=Label(frame,text="Registration",font=("times",20,"bold"),fg="black",pady=0,padx=0)
+lab.grid(columnspan=2)
+
+labname=Label(frame,text="Name",font=("time",15,"bold"),pady=10)
+labname.grid(row=1,column=0)
+
+txtname=Entry(frame,font=("time",15,"bold"))
+txtname.grid(row=1,column=1)
+
+labnage=Label(frame,text="Age",font=("time",15,"bold"),pady=10)
+labnage.grid(row=2,column=0)
+
+txtage=Entry(frame,font=("time",15,"bold"))
+txtage.grid(row=2,column=1)
+
+labadd=Label(frame,text="Address",font=("time",15,"bold"),pady=10)
+labadd.grid(row=3,column=0)
+
+txtadd=Entry(frame,font=("time",15,"bold"))
+txtadd.grid(row=3,column=1)
+
+labmail=Label(frame,text="Mail",font=("time",15,"bold"),pady=10)
+labmail.grid(row=4,column=0)
+
+txtmail=Entry(frame,font=("time",15,"bold"))
+txtmail.grid(row=4,column=1)
+
+btnsub=Button(frame,text="Submit",font=("times",15,"bold"),padx=20,pady=5,bg="green",fg="white")
+btnsub.grid(row=5,column=1,sticky=E)
+
+btncls=Button(frame,text="Clear ",font=("times",15,"bold"),padx=20,pady=5,bg="red",fg="white")
+btncls.grid(row=5,column=1,sticky=W)
+
+frame1=Frame(tk,highlightbackground="black",highlightthickness=2,padx=20,pady=20)
+frame1.grid(row=0,column=1,padx=0,pady=0)
+
+lab1=Label(frame1,text="Login",font=("times",20,"bold"),fg="black",pady=0,padx=0)
+lab1.grid(columnspan=2)
+
+labname=Label(frame1,text="Name",font=("time",15,"bold"),pady=10)
+labname.grid(row=1,column=0)
+
+txtname=Entry(frame1,font=("time",15,"bold"))
+txtname.grid(row=1,column=1)
+
+btnsub=Button(frame1,text="Submit",font=("times",15,"bold"),padx=20,pady=5,bg="green",fg="white")
+btnsub.grid(row=5,column=1,sticky=E)
+
+btncls=Button(frame1,text="Clear ",font=("times",15,"bold"),padx=20,pady=5,bg="red",fg="white")
+btncls.grid(row=5,column=1,sticky=W)
+
+labmail=Label(frame1,text="Mail",font=("time",15,"bold"),pady=10)
+labmail.grid(row=4,column=0)
+
+txtmail=Entry(frame1,font=("time",15,"bold"))
+txtmail.grid(row=4,column=1)
+
+tk.mainloop()
+
+------------------------------------Notebook---------------------------------------------
+
+from tkinter import *
+from tkinter import ttk
+
+tk=Tk()
+tk.geometry("500x500")
+tk.title("Menu")
+
+mynote=ttk.Notebook(tk)
+mynote.pack()
+
+frame1=Frame(mynote,width=500,height=500,bg="green")
+frame1.pack(fill="both",expand=1)
+
+frame2=Frame(mynote,width=500,height=500,bg="red")
+frame2.pack(fill="both",expand=1)
+
+mynote.add(frame1,text="green")
+mynote.add(frame2,text="red")
+
+tk.mainloop()
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

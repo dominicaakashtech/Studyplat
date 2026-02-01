@@ -1,0 +1,273 @@
+
+------Function (method(or)subroutine(or)Definition)----------
+1]function is a sub program.
+2]define function & call function.
+3]Python function use more than one value.
+----------------------defined function--------------------------
+def sub():
+        a=int(input("Enter the A value:"))
+        b=int(input("Enter the b value:"))
+        c=a-b
+        print("sub:",c)
+sub()
+
+-------------------------Call function-------------------------------
+def function1():
+    print("function one")
+
+def function2():
+    print("function two")
+
+function1()
+function1()
+
+--------------------User Defined Function----------------------------
+
+a=10
+b=15
+def function1():
+    c=a+b
+    print(c)
+function1()
+
+----------------------------
+
+def factoral(a,b):
+    return a+b,a-b
+
+print(factoral(3,10))
+
+-----------------------------
+
+def call(a,b):
+    return a+b,a-b,a*b,a/b
+ans=call(2,2)
+print(ans)
+
+---------------------------Nested function-------------------------
+ 
+def function1(a,b):
+    c = a + b
+    print('add:',c)
+    def function2(d,f):
+        c=d*f
+        print("mul",c)
+    function2(10,30)
+function1(5,5)
+
+---------------- Arguments function-----------------------------
+Arguments Type:
+1]Required Arguments
+2]keyword Arguments
+3]Default Arguments
+4]Varible Arguments
+
+5]Lambda function
+
+---------------------Required Arguments------------------------
+
+def fun_definition(a,b):        #position should be following
+    print(a,b)
+fun_definition(20,10)
+
+E.g
+def fun_definition(a,b,c):        
+    print("A =",a,"B =",b,"C =",c)
+fun_definition(10,20,30)
+
+----------------------------------
+
+def fun_definition(a,b,c):        
+    print("A =",a,"B =",b,"C =",c)
+    d=c+b+a
+    print(d)
+fun_definition(10,20,30)
+fun_definition(52,53,54)
+fun_definition(42,43,44)
+
+---------------------------------
+
+def my_function(fname):
+  print(fname + " Refsnes")
+
+my_function("Ram")
+my_function("Sam")
+my_function("Raja")
+
+
+
+----------------------keyword Argumets------------------------
+
+def fun_definition(a,b):       #order / position is not required
+    print(a,b)                 #initialization will be done based an keywords(name)
+fun_definition(a=10,b=20)
+
+1]
+def my_function(child3, child2, child1):
+  print("The youngest child is " + child3)
+
+my_function(child1 = "Kumar", child2 = "Sam", child3 = "Ram")
+
+2]
+def add(a,b):
+    print(a,b)
+add(10,20)
+
+def add(a,b):
+    print(a,b)
+add(b=10,a=20)
+
+---------------------Default Argumets---------------------------
+
+def fun_definition(name,course="ece"): #no. of arguments need not be match with both f.call  & f.def
+    print(name,course)      #some of arguments will be consider as defult arguments
+fun_definition(name="sam",course="cse")
+fun_definition(name="ram")
+
+1]
+def my_function(country = "Norway"):
+  print("I am from " + country)
+
+my_function("Sweden")
+my_function("India")
+my_function()
+my_function("Brazil")
+
+----------------------Varible Argumets-------------------------
+
+Varible Argumets or Arbitrary:
+1]
+def fun_definition(*key):
+    for i in key:
+        print(i)
+fun_definition("sam","ram","kumar","raja")
+
+2]
+def my_function(*kids):
+  print("The youngest child is " + kids[0])
+my_function("Sam", "Ram", "Raja")
+
+E.g------------------------------------------------------------
+
+def my_function(**kid):
+  print("His last name is " + kid["lname"])
+my_function(fname = "Sam", lname = "Ram")
+
+------------------------Lambda function-----------------------
+1]
+c=lambda a,b: a*b
+print(c(5,10))
+
+2]
+def mylambda(n):
+  return lambda a: a*n
+c=mylambda(5)
+print(c(10))
+
+3]
+def mylambda(n):
+  return lambda a: a*n
+c=mylambda(5)
+d=mylambda(5)
+print(c(10))
+print(d(5))
+
+
+def mylambda(n):
+  return lambda a: a*n
+c=mylambda(5)
+print(c(10))
+
+# e=lambda a,b:a+b
+# print(e(10,20))
+
+# def mylambda(a,b):
+#   return a+b
+# c=mylambda(10,20)
+# print(c)
+----------------------------------------------------------------
+def function1(a,b):
+    c = a + b
+    print('add:',c)
+
+def function2(self,self2):
+    c = self - self2
+    print('sub:',c)
+    
+def function3(num1,num2):
+    c = num1 * num2
+    print('self:',c)
+function1(5,5)
+function2(10,5)
+function3(2,2)
+ 
+----------------------------------------------------------
+
+def factoral(num):              #3=1*2*3    n=3 fact=1
+    fact=1                      #1*2*3*4*5*2 n=5 fact=2
+    for i in range(1,num+1):
+        fact *=i                               
+    return fact
+n=3
+print(factoral(n))
+
+----------------------recursion function--------------------
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n - 1)
+
+
+n = int(input("enter a value"))
+print(factorial(n))
+
+
+
+
+
+
+ function question:
+a=list(map(int,input("enter the list:").split()))
+ 1. Write a Python function to find the maximum of three numbers.
+
+2. Write a Python function to sum all the numbers in a list.
+ Sample List : (8, 2, 3, 0, 7)
+ Expected Output : 20
+
+ 3. Write a Python function to multiply all the numbers in a list.
+ Sample List : (8, 2, 3, -1, 7)
+ Expected Output : -336
+
+4. Write a Python program to reverse a string.
+ Sample String : "1234abcd"
+Expected Output : "dcba4321"
+
+5.Write a Python function that takes a number as a parameter and checks whether the number is prime or not.
+
+
+
+
+
+a=int(input("Enter a number:"))
+
+n=0
+for i in range(2,a):
+    if a%i==0:
+        n=1
+        break
+if n==1:
+    print("its not prime")
+else:
+    print("its prime")
+
+
+
+
+
+
+
+
+
+
+
+
